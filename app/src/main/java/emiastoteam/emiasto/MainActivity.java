@@ -6,7 +6,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 public class MainActivity extends AppCompatActivity {
-
+    private static String klucz = "xtxePCeZ5Y7SXNQuy2EqOE5xJF8SEhFVGjXx1VBxgkFfCW9gMrI/pOv/X/7fQQNx2Dyvji4iv30eXJ6aeQ/rIvqPu50r6vzwHqFsye3/CDj4IHiIuld0onBO2x5IHerTi/2XdqRcLkdl1TlqARN+Zuf1kt2Z5SOhZTOXNz+CMmVTYWx0ZWRfX6r/HAHziyMSONHEL/hNbpnCdrlgV64EFw8QXzXHglIOJjIQw2N7X1OQYmq6tRpvROzVJetm0T00ZBkRkJj7+OF3SSV6r2dPXBPqfcbb68mNnVueNeMlN4L/KHlA/u88W9NNT9fY3TOSI46SDveYYNYhmvRm8qTROIfH080B7kLzpFQw8Jl6stEaAafuafuJmp0ZvbSMFO1b8kBSHoaOAMDi1+Qn2YnjJd30RCbhtUsHecgEtqrPCMIUtCDHEApQMEpC5pOe3wMCjAvh9H7SxmCH1QPb7gPsoMXuauRy5DPuorhcsjTz4JWcTOkk2qOeJaj3/ccMjN8GEvPQ5U52ALz6ZO8VfK369sCk1Am2QVO/zUI53e3XX9pkTnoh1x5nCkrDeNeEJ64pHLrY3XMj1MTlcBOUzzjFuLFgXl4S+jcJceGWDShyqWzZUY409SaTLVmI7kkn4CuzzOic+nN2tBmBnA9WaLT9F6OTXwYnl7hjtwWXKJy8BRr6Vp8R/pu5xC6F+bAxOUxz";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
