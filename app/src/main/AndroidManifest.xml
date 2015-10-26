@@ -50,7 +50,11 @@
         <activity
             android:name=".users"
             android:label="@string/title_activity_users"
-            android:theme="@style/HiddenTitleTheme">
+            android:theme="@style/HiddenTitleTheme" >
+        </activity>
+        <activity
+            android:name=".addUser"
+            android:label="@string/title_activity_add_user" >
         </activity>
     </application>
 

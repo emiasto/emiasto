@@ -9,6 +9,9 @@
     <string name="btnTextShowUsers">Użytkownicy</string>
     <string name="btnTxtCloseApp"> Opuść eMiasto</string>
 
+    <string name="btnTxtAddUser"> Dodaj użytkownika</string>
+    <string name="btnTxtDeleteUser"> Usuń użytkownika</string>
 
     <string name="title_activity_users">users</string>
+    <string name="title_activity_add_user">AddUser</string>
 </resources>
