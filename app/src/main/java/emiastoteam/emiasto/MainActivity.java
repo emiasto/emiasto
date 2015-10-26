@@ -43,6 +43,13 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intencja);
     }
 
+
+    public void showUsers(View view)
+    {
+        Intent intencja = new Intent(this, users.class);
+        startActivity(intencja);
+    }
+
     public void closeApp(View view)
     {
         finish();

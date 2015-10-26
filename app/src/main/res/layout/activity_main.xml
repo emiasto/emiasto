@@ -13,7 +13,7 @@
     <Button
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="@string/txtStartWikitude"
+        android:text="@string/btnTxtStartWikitude"
         android:id="@+id/btnStartW"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
@@ -25,20 +25,32 @@
     <Button
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="New Button"
+        android:text="@string/btnTextShowUsers"
         android:id="@+id/button"
         android:layout_below="@+id/btnStartW"
         android:layout_alignLeft="@+id/btnStartW"
         android:layout_alignStart="@+id/btnStartW"
         android:layout_marginTop="30dp"
-        android:background="@drawable/rounded_button_main"/>
+        android:background="@drawable/rounded_button_main"
+        android:onClick="showUsers" />
 
     <Button
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="New Button"
+        android:text="@string/btnTxtCloseApp"
         android:id="@+id/button2"
         android:layout_below="@+id/button"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/rounded_button_main"
+        android:onClick="closeApp"/>
+
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/btnTxtCloseApp"
+        android:id="@+id/button3"
+        android:layout_below="@+id/button2"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="30dp"
         android:background="@drawable/rounded_button_main"

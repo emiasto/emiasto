@@ -5,6 +5,10 @@
     <string name="action_settings">Settings</string>
     <string name="title_activity_wikitude">wikitude</string>
 
-    <string name="txtStartWikitude">Start Wikitude!</string>
-    <string name="txtCloseApp"> Opuść eMiasto</string>
+    <string name="btnTxtStartWikitude">Start Wikitude!</string>
+    <string name="btnTextShowUsers">Użytkownicy</string>
+    <string name="btnTxtCloseApp"> Opuść eMiasto</string>
+
+
+    <string name="title_activity_users">users</string>
 </resources>

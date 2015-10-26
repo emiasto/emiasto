@@ -45,6 +45,11 @@
         <activity
             android:name=".wikitude"
             android:label="@string/title_activity_wikitude"
+            android:theme="@style/HiddenTitleTheme" >
+        </activity>
+        <activity
+            android:name=".users"
+            android:label="@string/title_activity_users"
             android:theme="@style/HiddenTitleTheme">
         </activity>
     </application>
