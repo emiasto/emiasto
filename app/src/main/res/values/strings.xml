@@ -14,4 +14,8 @@
 
     <string name="title_activity_users">users</string>
     <string name="title_activity_add_user">AddUser</string>
+
+
+    <string name="location_fetching_message">Próbuję określić Twoją lokalizację</string>
+    <string name="compass_accuracy_low">Please re-calibrate compass by waving your device in a figure 8 motion.</string>
 </resources>
