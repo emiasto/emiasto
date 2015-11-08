@@ -2,6 +2,7 @@ package emiastoteam.emiasto;
 
 import android.app.Application;
 import android.content.Intent;
+import android.support.annotation.MainThread;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -13,6 +14,14 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity {
 
     GPSTracker gps;
+
+    GPSHelper gpsh;
+
+    double latA = 51.421935 ;
+    double lonA = 21.960356 ;
+    double latT = 51.143642 ;
+    double lonT = 23.484617 ;
+
 
 
     public void s()
@@ -47,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void GetGPS(View view)
     {
-        gps = new GPSTracker(MainActivity.this);
+     /*   gps = new GPSTracker(MainActivity.this);
 
         // check if GPS enabled
         if(gps.canGetLocation()){
@@ -62,7 +71,16 @@ public class MainActivity extends AppCompatActivity {
             // GPS or Network is not enabled
             // Ask user to enable GPS/network in settings
             gps.showSettingsAlert();
-        }
+                    }
+*/gpsh = new GPSHelper();
+        double odleglosc = gpsh.CalculatDistance(latA, lonA, latT, lonT);
+        Toast.makeText(getApplicationContext(), "ABC" + odleglosc, Toast.LENGTH_SHORT).show();
+    }
+
+    public void ShowGPS(View view)
+    {
+        double odleglosc = gpsh.CalculatDistance(latA, lonA, latT, lonT);
+        Toast.makeText(getApplicationContext(), "Twoja odległość: " + odleglosc, Toast.LENGTH_SHORT).show();
     }
 
 
