@@ -8,6 +8,7 @@
     <string name="btnTxtStartWikitude">Start Wikitude!</string>
     <string name="btnTextShowUsers">Użytkownicy</string>
     <string name="btnTxtCloseApp"> Opuść eMiasto</string>
+    <string name ="btnTxtGetGps">Pobierz dane GPS</string>
 
     <string name="btnTxtAddUser"> Dodaj użytkownika</string>
     <string name="btnTxtDeleteUser"> Usuń użytkownika</string>
