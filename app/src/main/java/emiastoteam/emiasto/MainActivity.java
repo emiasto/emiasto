@@ -74,13 +74,15 @@ public class MainActivity extends AppCompatActivity {
                     }
 */gpsh = new GPSHelper();
         double odleglosc = gpsh.CalculatDistance(latA, lonA, latT, lonT);
-        Toast.makeText(getApplicationContext(), "ABC" + odleglosc, Toast.LENGTH_SHORT).show();
+        String result = String.format("%.2f", odleglosc);
+        Toast.makeText(getApplicationContext(), "Twoja odległość: " + result + "km", Toast.LENGTH_SHORT).show();
     }
 
     public void ShowGPS(View view)
     {
         double odleglosc = gpsh.CalculatDistance(latA, lonA, latT, lonT);
-        Toast.makeText(getApplicationContext(), "Twoja odległość: " + odleglosc, Toast.LENGTH_SHORT).show();
+        String result = String.format("%.2f", odleglosc);
+        Toast.makeText(getApplicationContext(), "Twoja odległość: " + result + "km", Toast.LENGTH_SHORT).show();
     }
 
 
