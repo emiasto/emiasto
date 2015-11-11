@@ -56,6 +56,8 @@
             android:name=".addUser"
             android:label="@string/title_activity_add_user" >
         </activity>
+        <activity android:name=".LoadFileActivity" >
+        </activity>
     </application>
 
 </manifest>

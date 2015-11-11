@@ -15,6 +15,8 @@ import android.widget.Toast;
 import com.wikitude.architect.ArchitectView;
 import com.wikitude.architect.StartupConfiguration;
 
+import org.json.JSONArray;
+
 import java.io.File;
 import java.io.FileOutputStream;
 

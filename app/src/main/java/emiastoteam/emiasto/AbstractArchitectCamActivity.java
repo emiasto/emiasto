@@ -170,7 +170,7 @@ public abstract class AbstractArchitectCamActivity extends Activity implements A
 
     @Override
     protected void onPostCreate( final Bundle savedInstanceState ) {
-        super.onPostCreate( savedInstanceState );
+        super.onPostCreate(savedInstanceState);
 
         if ( this.architectView != null ) {
 
@@ -202,7 +202,7 @@ public abstract class AbstractArchitectCamActivity extends Activity implements A
 
             // register accuracy listener in architectView, if set
             if (this.sensorAccuracyListener!=null) {
-                this.architectView.registerSensorAccuracyChangeListener( this.sensorAccuracyListener );
+                this.architectView.registerSensorAccuracyChangeListener(this.sensorAccuracyListener);
             }
         }
 
@@ -345,8 +345,18 @@ public abstract class AbstractArchitectCamActivity extends Activity implements A
 
                     if (lastKnownLocaton!=null && !isFinishing()) {
                         // TODO: you may replace this dummy implementation and instead load POI information e.g. from your database
-                        poiData = getPoiInformation(lastKnownLocaton, 20);
-                        callJavaScript("World.loadPoisFromJsonData", new String[] { poiData.toString() });
+ //                       poiData = getPoiInformation(lastKnownLocaton, 20);
+                        Bundle extras = getIntent().getExtras();
+                        try {
+                            if (extras != null) {
+                                String text = extras.getString("poiData");
+                                JSONObject object = new JSONObject(text);
+                                poiData = object.getJSONArray("ListaPunktow");
+                            }
+                            callJavaScript("World.loadPoisFromJsonData", new String[]{poiData.toString()});
+                        } catch (org.json.JSONException jsonex){
+                            Log.d("onActivityResult", jsonex.toString());
+                        }
                     }
 
                     isLoading = false;

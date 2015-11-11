@@ -63,14 +63,15 @@ var World = {
 
 		/*
 			The custom function World.onLocationChanged checks with the flag World.initiallyLoadedData if the function was already called. With the first call of World.onLocationChanged an object that contains geo information will be created which will be later used to create a marker using the World.loadPoisFromJsonData function.
-		*/
+
 		if (!World.initiallyLoadedData) {
-			/* 
+
 				requestDataFromLocal with the geo information as parameters (latitude, longitude) creates different poi data to a random location in the user's vicinity.
-			*/
+
 			World.requestDataFromLocal(lat, lon);
 			World.initiallyLoadedData = true;
 		}
+		*/
 	},
 
 	// fired when user pressed maker in cam

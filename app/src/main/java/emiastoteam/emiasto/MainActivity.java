@@ -1,18 +1,31 @@
 package emiastoteam.emiasto;
 
+import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.Application;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.annotation.MainThread;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity {
+import org.json.JSONArray;
+import org.json.JSONObject;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+
+public class MainActivity extends AppCompatActivity {
+    public static int STATIC_INTEGER_VALUE = 0;
+    protected String json = "";
     GPSTracker gps;
 
     GPSHelper gpsh;
@@ -50,13 +63,13 @@ public class MainActivity extends AppCompatActivity {
 
     public void startW(View view)
     {
-        Intent intencja = new Intent(this, wikitude.class);
-        startActivity(intencja);
+        Intent intencja = new Intent(this, LoadFileActivity.class);
+        startActivityForResult(intencja, STATIC_INTEGER_VALUE);
     }
 
     public void GetGPS(View view)
     {
-     /*   gps = new GPSTracker(MainActivity.this);
+        gps = new GPSTracker(MainActivity.this);
 
         // check if GPS enabled
         if(gps.canGetLocation()){
@@ -72,12 +85,41 @@ public class MainActivity extends AppCompatActivity {
             // Ask user to enable GPS/network in settings
             gps.showSettingsAlert();
                     }
-*/gpsh = new GPSHelper();
-        double odleglosc = gpsh.CalculatDistance(latA, lonA, latT, lonT);
-        String result = String.format("%.2f", odleglosc);
-        Toast.makeText(getApplicationContext(), "Twoja odległość: " + result + "km", Toast.LENGTH_SHORT).show();
+
+//        gpsh = new GPSHelper();
+//        double odleglosc = gpsh.CalculatDistance(latA, lonA, latT, lonT);
+//        String result = String.format("%.2f", odleglosc);
+//        Toast.makeText(getApplicationContext(), "Twoja odległość: " + result + "km", Toast.LENGTH_SHORT).show();
     }
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch(requestCode) {
+            case 0: {
+                if (resultCode == Activity.RESULT_OK) {
+                    String file = data.getStringExtra("FileName");
+                    try {
+                        BufferedReader br = new BufferedReader(new FileReader(file));
+                        // TODO Update your TextView.
+                        json = br.readLine();
+                        if (!json.equals("")) {
+                            Intent i = new Intent(this, wikitude.class);
+                            i.putExtra("poiData", json);
+                            startActivity(i);
+                        }
+                    } catch (FileNotFoundException ex){
+                        Log.d("onActivityResult",ex.toString());
+                    }
+                    catch (IOException ioex) {
+                        Log.d("onActivityResult",ioex.toString());
+                    }
+
+                }
+                break;
+            }
+        }
+    }
     public void ShowGPS(View view)
     {
         double odleglosc = gpsh.CalculatDistance(latA, lonA, latT, lonT);
