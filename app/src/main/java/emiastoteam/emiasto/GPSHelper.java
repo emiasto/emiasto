@@ -16,6 +16,12 @@ public class GPSHelper {
         return distance;
     }
 
+    public double CalculateDist(double x1, double y1, double z1, double x2, double y2, double z2)
+    {
+        double distance = 1;
+        return distance;
+    }
+
     private double degToRad(double deg) {
         return (deg * Math.PI / 180.0);
     }
