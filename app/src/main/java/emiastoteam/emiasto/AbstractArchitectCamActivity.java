@@ -222,7 +222,7 @@ public abstract class AbstractArchitectCamActivity extends Activity implements A
 
             // unregister accuracy listener in architectView, if set
             if ( this.sensorAccuracyListener != null ) {
-                this.architectView.unregisterSensorAccuracyChangeListener( this.sensorAccuracyListener );
+                this.architectView.unregisterSensorAccuracyChangeListener(this.sensorAccuracyListener);
             }
         }
 
@@ -352,6 +352,21 @@ public abstract class AbstractArchitectCamActivity extends Activity implements A
                                 String text = extras.getString("poiData");
                                 JSONObject object = new JSONObject(text);
                                 poiData = object.getJSONArray("ListaPunktow");
+                                double latidude, longitude, altitude, distance;
+                                String opis;
+                                for (int i = 0; i < poiData.length(); i++) {
+                                    JSONObject row = poiData.getJSONObject(i);
+                                    latidude = row.getDouble("latitude");
+                                    longitude = row.getDouble("longitude");
+                                    altitude = row.getDouble("altitude");
+                                    distance = GPSHelper.CalculatDistance(latidude, longitude, lastKnownLocaton.getLatitude(), lastKnownLocaton.getLongitude());
+                                    if (distance < 5)
+                                        opis = "odl: " + String.valueOf(GPSHelper.round(distance * 1000, 2))+ " m";
+                                    else
+                                        opis = "odl: " + String.valueOf(GPSHelper.round(distance,2)) + " km";
+                                    row.put("description", opis);
+                                }
+
                             }
                             callJavaScript("World.loadPoisFromJsonData", new String[]{poiData.toString()});
                         } catch (org.json.JSONException jsonex){
@@ -385,6 +400,7 @@ public abstract class AbstractArchitectCamActivity extends Activity implements A
             this.architectView.callJavascript(js);
         }
     }
+
 
     /**
      * loads poiInformation and returns them as JSONArray. Ensure attributeNames of JSON POIs are well known in JavaScript, so you can parse them easily
