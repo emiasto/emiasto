@@ -66,10 +66,11 @@ var World = {
 			var distance = myGeoLocation.distanceToUser();
 			for(var i = 0; i < World.markerList.length; i++)
 			{
-				var geoLoc = new AR.GeoLocation(parseFloat(World.markerList[i].latitude),parseFloat(World.markerList[i].longitude),parseFloat(World.markerList[i].altitude));
+				var geoLoc = new AR.GeoLocation(parseFloat(World.markerList[i].poiData.latitude),parseFloat(World.markerList[i].poiData.longitude),parseFloat(World.markerList[i].poiData.altitude));
 
 				var distance = myGeoLocation.distanceTo(geoLoc);
-				markerList[i].description = "odl: " + distance;
+				var str1 = "odl: ";
+				World.markerList[i].poiData.description = str1.concat(distance.toString());
 			}
         }
 		/*
