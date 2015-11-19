@@ -31,7 +31,7 @@ var World = {
             var str1 = "odl:";
             if (distance > 5000) {
             	distance = distance / 1000;
-            	str1 = str1.concat(distance.toFixed(0).toString(),"km ")
+            	str1 = str1.concat(distance.toFixed(2).toString(),"km ")
             } else {
             	str1 = str1.concat(distance.toFixed(0).toString(),"m ")
             }
