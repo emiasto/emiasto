@@ -37,7 +37,7 @@ function Marker(poiData) {
     });
 
     // create an AR.Label for the marker's description
-    this.descriptionLabel = new AR.Label(poiData.description.trunc(15), 0.8, {
+    this.descriptionLabel = new AR.Label(poiData.description.trunc(20), 0.8, {
         zOrder: 1,
         offsetY: -0.55,
         style: {

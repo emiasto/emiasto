@@ -14,7 +14,7 @@ var World = {
 	currentMarker: null,
 
 	// called to inject new POI data
-	loadPoisFromJsonData: function loadPoisFromJsonDataFn(poiData) {
+	loadPoisFromJsonData: function loadPoisFromJsonDataFn(poiData, lat, lon, alt) {
 		// empty list of visible markers
 		World.markerList = [];
 
@@ -23,14 +23,28 @@ var World = {
 		World.markerDrawable_selected = new AR.ImageResource("assets/marker_selected.png");
 
 		// loop through POI-information and create an AR.GeoObject (=Marker) per POI
+		var myGeoLocation = new AR.GeoLocation(lat,lon,alt);
 		for (var currentPlaceNr = 0; currentPlaceNr < poiData.length; currentPlaceNr++) {
+			var geoLoc = new AR.GeoLocation(parseFloat(poiData[currentPlaceNr].latitude),parseFloat(poiData[currentPlaceNr].longitude),parseFloat(poiData[currentPlaceNr].altitude));
+
+            var distance = myGeoLocation.distanceTo(geoLoc);
+            var str1 = "odl:";
+            if (distance > 5000) {
+            	distance = distance / 1000;
+            	str1 = str1.concat(distance.toFixed(0).toString(),"km ")
+            } else {
+            	str1 = str1.concat(distance.toFixed(0).toString(),"m ")
+            }
+			var heightdistance = alt - parseFloat(poiData[currentPlaceNr].altitude);
+			heightdistance = heightdistance.toFixed(0);
+			str1 = str1.concat("h:",heightdistance,"m");
 			var singlePoi = {
 				"id": poiData[currentPlaceNr].id,
 				"latitude": parseFloat(poiData[currentPlaceNr].latitude),
 				"longitude": parseFloat(poiData[currentPlaceNr].longitude),
 				"altitude": parseFloat(poiData[currentPlaceNr].altitude),
 				"title": poiData[currentPlaceNr].name,
-				"description": poiData[currentPlaceNr].description
+				"description": str1
 			};
 
 			/*
@@ -63,13 +77,18 @@ var World = {
 
 		if (World.markerList.length>0) {
 			var myGeoLocation = new AR.GeoLocation(lat,lon,alt);
-			var distance = myGeoLocation.distanceToUser();
 			for(var i = 0; i < World.markerList.length; i++)
 			{
 				var geoLoc = new AR.GeoLocation(parseFloat(World.markerList[i].poiData.latitude),parseFloat(World.markerList[i].poiData.longitude),parseFloat(World.markerList[i].poiData.altitude));
 
 				var distance = myGeoLocation.distanceTo(geoLoc);
 				var str1 = "odl: ";
+                if (distance > 5000) {
+                	distance = distance / 1000;
+                    str1 = str1.concat(distance.toFixed(2).toString()," km")
+                } else {
+                    str1 = str1.concat(distance.toFixed(2).toString()," m")
+                }
 				World.markerList[i].poiData.description = str1.concat(distance.toString());
 			}
         }

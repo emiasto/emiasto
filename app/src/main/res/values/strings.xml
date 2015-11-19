@@ -18,5 +18,6 @@
 
 
     <string name="location_fetching_message">Próbuję określić Twoją lokalizację</string>
+    <string name="file_missing">Nie wczytano pliku z punktami</string>
     <string name="compass_accuracy_low">Please re-calibrate compass by waving your device in a figure 8 motion.</string>
 </resources>

@@ -345,30 +345,16 @@ public abstract class AbstractArchitectCamActivity extends Activity implements A
 
                     if (lastKnownLocaton!=null && !isFinishing()) {
                         // TODO: you may replace this dummy implementation and instead load POI information e.g. from your database
- //                       poiData = getPoiInformation(lastKnownLocaton, 20);
                         Bundle extras = getIntent().getExtras();
                         try {
                             if (extras != null) {
                                 String text = extras.getString("poiData");
                                 JSONObject object = new JSONObject(text);
                                 poiData = object.getJSONArray("ListaPunktow");
-                                double latidude, longitude, altitude, distance;
-                                String opis;
-                                for (int i = 0; i < poiData.length(); i++) {
-                                    JSONObject row = poiData.getJSONObject(i);
-                                    latidude = row.getDouble("latitude");
-                                    longitude = row.getDouble("longitude");
-                                    altitude = row.getDouble("altitude");
-                                    distance = GPSHelper.CalculatDistance(latidude, longitude, lastKnownLocaton.getLatitude(), lastKnownLocaton.getLongitude());
-                                    if (distance < 5)
-                                        opis = "odl: " + String.valueOf(GPSHelper.round(distance * 1000, 2))+ " m";
-                                    else
-                                        opis = "odl: " + String.valueOf(GPSHelper.round(distance,2)) + " km";
-                                    row.put("description", opis);
-                                }
-
+                                callJavaScript("World.loadPoisFromJsonData", new String[]{poiData.toString()}, lastKnownLocaton.getLatitude(), lastKnownLocaton.getLongitude(), lastKnownLocaton.getAltitude());
+                            } else {
+                                Toast.makeText(AbstractArchitectCamActivity.this, R.string.file_missing, Toast.LENGTH_LONG).show();
                             }
-                            callJavaScript("World.loadPoisFromJsonData", new String[]{poiData.toString()});
                         } catch (org.json.JSONException jsonex){
                             Log.d("onActivityResult", jsonex.toString());
                         }
@@ -386,7 +372,7 @@ public abstract class AbstractArchitectCamActivity extends Activity implements A
      * @param methodName
      * @param arguments
      */
-    private void callJavaScript(final String methodName, final String[] arguments) {
+    private void callJavaScript(final String methodName, final String[] arguments, double latitude, double longitude, double altitude) {
         final StringBuilder argumentsString = new StringBuilder("");
         for (int i= 0; i<arguments.length; i++) {
             argumentsString.append(arguments[i]);
@@ -396,7 +382,7 @@ public abstract class AbstractArchitectCamActivity extends Activity implements A
         }
 
         if (this.architectView!=null) {
-            final String js = ( methodName + "( " + argumentsString.toString() + " );" );
+            final String js = ( methodName + "( " + argumentsString.toString() + "," + String.valueOf(latitude) +","+String.valueOf(longitude)+","+String.valueOf(altitude)+" );" );
             this.architectView.callJavascript(js);
         }
     }
