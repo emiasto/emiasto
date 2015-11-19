@@ -82,14 +82,17 @@ var World = {
 				var geoLoc = new AR.GeoLocation(parseFloat(World.markerList[i].poiData.latitude),parseFloat(World.markerList[i].poiData.longitude),parseFloat(World.markerList[i].poiData.altitude));
 
 				var distance = myGeoLocation.distanceTo(geoLoc);
-				var str1 = "odl: ";
+                var str1 = "odl:";
                 if (distance > 5000) {
-                	distance = distance / 1000;
-                    str1 = str1.concat(distance.toFixed(2).toString()," km")
+                    distance = distance / 1000;
+                    str1 = str1.concat(distance.toFixed(2).toString(),"km ")
                 } else {
-                    str1 = str1.concat(distance.toFixed(2).toString()," m")
+                	str1 = str1.concat(distance.toFixed(0).toString(),"m ")
                 }
-				World.markerList[i].poiData.description = str1.concat(distance.toString());
+                var heightdistance = alt - parseFloat(poiData[currentPlaceNr].altitude);
+                heightdistance = heightdistance.toFixed(0);
+                str1 = str1.concat("h:",heightdistance,"m");
+				World.markerList[i].poiData.description = str1;
 			}
         }
 		/*
