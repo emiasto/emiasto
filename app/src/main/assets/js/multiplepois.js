@@ -35,7 +35,7 @@ var World = {
             } else {
             	str1 = str1.concat(distance.toFixed(0).toString(),"m ")
             }
-			var heightdistance = alt - parseFloat(poiData[currentPlaceNr].altitude);
+			var heightdistance = parseFloat(poiData[currentPlaceNr].altitude) - alt;
 			heightdistance = heightdistance.toFixed(0);
 			str1 = str1.concat("h:",heightdistance,"m");
 			var singlePoi = {
@@ -76,6 +76,7 @@ var World = {
 	locationChanged: function locationChangedFn(lat, lon, alt, acc) {
 
 		if (World.markerList.length>0) {
+			//var lista = World.markerList;
 			var myGeoLocation = new AR.GeoLocation(lat,lon,alt);
 			for(var i = 0; i < World.markerList.length; i++)
 			{
@@ -89,10 +90,11 @@ var World = {
                 } else {
                 	str1 = str1.concat(distance.toFixed(0).toString(),"m ")
                 }
-                var heightdistance = alt - parseFloat(poiData[currentPlaceNr].altitude);
+               var heightdistance = parseFloat(poiData[currentPlaceNr].altitude) - alt;
                 heightdistance = heightdistance.toFixed(0);
                 str1 = str1.concat("h:",heightdistance,"m");
 				World.markerList[i].poiData.description = str1;
+				World.markerList[i].descriptionLabel = str1;
 			}
         }
 		/*
