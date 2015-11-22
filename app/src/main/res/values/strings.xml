@@ -10,9 +10,16 @@
     <string name="btnTxtCloseApp"> Opuść eMiasto</string>
     <string name ="btnTxtGetGps">Pobierz dane GPS</string>
 
-    <string name="btnTxtAddUser"> Dodaj użytkownika</string>
-    <string name="btnTxtDeleteUser"> Usuń użytkownika</string>
-
+    <string name="txtEMiasto">eMiasto mobile</string>
+    <string name="txtK">Kamil Zieliński</string>
+    <string name="txtM">Marcin Schmidtke</string>
+    <string name="txtMmail">marcin.schmidtke@gmail.com</string>
+    <string name="txtKmail">kp.zielinski@gmail.com</string>
+    <string name="txtStudia">Informatyka magisterska niestacjonarna</string>
+    <string name="txtWeii">Wydział Elektrotechniki i Informatyki</string>
+    <string name="txtPollub">Politechnika Lubelska w Lublinie</string>
+    <string name="txtMiasto">Lublin</string>
+    <string name="txt2015">2015</string>
     <string name="title_activity_users">users</string>
     <string name="title_activity_add_user">AddUser</string>
 

@@ -41,7 +41,6 @@
    >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -55,11 +54,8 @@
         <activity
             android:name=".about"
             android:label="@string/title_activity_users"
-            android:theme="@style/HiddenTitleTheme" >
-        </activity>
-        <activity
-            android:name=".addUser"
-            android:label="@string/title_activity_add_user" >
+
+            android:screenOrientation="portrait">
         </activity>
         <activity android:name=".LoadFileActivity" >
         </activity>
