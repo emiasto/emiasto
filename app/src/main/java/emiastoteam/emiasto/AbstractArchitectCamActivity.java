@@ -138,6 +138,15 @@ public abstract class AbstractArchitectCamActivity extends Activity implements A
                     if (location!=null) {
                         // sore last location as member, in case it is needed somewhere (in e.g. your adjusted project)
                         AbstractArchitectCamActivity.this.lastKnownLocaton = location;
+
+                        runOnUiThread(new Runnable() {
+
+                            @Override
+                            public void run() {
+                                Toast.makeText(AbstractArchitectCamActivity.this, "Lat:" + String.valueOf(location.getLatitude()) + " Lon:"+ String.valueOf(location.getLongitude()) , Toast.LENGTH_SHORT).show();
+                            }
+                        });
+
                         if ( AbstractArchitectCamActivity.this.architectView != null ) {
                             // check if location has altitude at certain accuracy level & call right architect method (the one with altitude information)
                             if ( location.hasAltitude() && location.hasAccuracy() && location.getAccuracy()<7) {
@@ -328,13 +337,13 @@ public abstract class AbstractArchitectCamActivity extends Activity implements A
 
                     while (lastKnownLocaton==null && !isFinishing()) {
 
-                        runOnUiThread(new Runnable() {
-
-                            @Override
-                            public void run() {
-                                Toast.makeText(AbstractArchitectCamActivity.this, R.string.location_fetching_message, Toast.LENGTH_SHORT).show();
-                            }
-                        });
+//                        runOnUiThread(new Runnable() {
+//
+//                            @Override
+//                            public void run() {
+//                                Toast.makeText(AbstractArchitectCamActivity.this, R.string.location_fetching_message, Toast.LENGTH_SHORT).show();
+//                            }
+//                        });
 
                         try {
                             Thread.sleep(WAIT_FOR_LOCATION_STEP_MS);

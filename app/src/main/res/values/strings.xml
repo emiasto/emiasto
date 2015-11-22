@@ -6,7 +6,7 @@
     <string name="title_activity_wikitude">wikitude</string>
 
     <string name="btnTxtStartWikitude">Start Wikitude!</string>
-    <string name="btnTextShowUsers">Użytkownicy</string>
+    <string name="btnTextShowAbout">O programie</string>
     <string name="btnTxtCloseApp"> Opuść eMiasto</string>
     <string name ="btnTxtGetGps">Pobierz dane GPS</string>
 

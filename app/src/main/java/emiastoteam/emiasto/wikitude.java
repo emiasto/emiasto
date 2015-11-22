@@ -1,32 +1,23 @@
 package emiastoteam.emiasto;
 
-import android.content.Intent;
-import android.graphics.Bitmap;
 import android.hardware.SensorManager;
 import android.location.LocationListener;
-import android.net.Uri;
-import android.os.Environment;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.wikitude.architect.ArchitectView;
 import com.wikitude.architect.StartupConfiguration;
 
-import org.json.JSONArray;
-
-import java.io.File;
-import java.io.FileOutputStream;
-
 public class wikitude extends AbstractArchitectCamActivity {
     private static String WIKITUDE_SDK_KEY = "xtxePCeZ5Y7SXNQuy2EqOE5xJF8SEhFVGjXx1VBxgkFfCW9gMrI/pOv/X/7fQQNx2Dyvji4iv30eXJ6aeQ/rIvqPu50r6vzwHqFsye3/CDj4IHiIuld0onBO2x5IHerTi/2XdqRcLkdl1TlqARN+Zuf1kt2Z5SOhZTOXNz+CMmVTYWx0ZWRfX6r/HAHziyMSONHEL/hNbpnCdrlgV64EFw8QXzXHglIOJjIQw2N7X1OQYmq6tRpvROzVJetm0T00ZBkRkJj7+OF3SSV6r2dPXBPqfcbb68mNnVueNeMlN4L/KHlA/u88W9NNT9fY3TOSI46SDveYYNYhmvRm8qTROIfH080B7kLzpFQw8Jl6stEaAafuafuJmp0ZvbSMFO1b8kBSHoaOAMDi1+Qn2YnjJd30RCbhtUsHecgEtqrPCMIUtCDHEApQMEpC5pOe3wMCjAvh9H7SxmCH1QPb7gPsoMXuauRy5DPuorhcsjTz4JWcTOkk2qOeJaj3/ccMjN8GEvPQ5U52ALz6ZO8VfK369sCk1Am2QVO/zUI53e3XX9pkTnoh1x5nCkrDeNeEJ64pHLrY3XMj1MTlcBOUzzjFuLFgXl4S+jcJceGWDShyqWzZUY409SaTLVmI7kkn4CuzzOic+nN2tBmBnA9WaLT9F6OTXwYnl7hjtwWXKJy8BRr6Vp8R/pu5xC6F+bAxOUxz";
+    GPSTracker gps;
     @Override
     protected void onPostCreate( final Bundle savedInstanceState ) {
         super.onPostCreate( savedInstanceState );
         this.injectData();
     }
+
+
 
     /**
      * last time the calibration toast was shown, this avoids too many toast shown when compass needs calibration

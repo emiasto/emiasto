@@ -1,22 +1,14 @@
 package emiastoteam.emiasto;
 
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.app.Application;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.support.annotation.MainThread;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.Toast;
-
-import org.json.JSONArray;
-import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -76,9 +68,11 @@ public class MainActivity extends AppCompatActivity {
 
             double latitude = gps.getLatitude();
             double longitude = gps.getLongitude();
+            double altitude = gps.getAltitude(latitude, longitude);
+
 
             // \n is for new line
-            Toast.makeText(getApplicationContext(), "Twoja pozycja GPS to:  \nLat: " + latitude + "\nLong: " + longitude, Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "Twoja pozycja GPS to:  \nLat: " + latitude + "\nLong: " + longitude +"\nWys: " + altitude,  Toast.LENGTH_LONG).show();
         }else{
             // can't get location
             // GPS or Network is not enabled
@@ -128,9 +122,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    public void showUsers(View view)
+    public void showAbout(View view)
     {
-        Intent intencja = new Intent(this, users.class);
+        Intent intencja = new Intent(this, about.class);
         startActivity(intencja);
     }
 

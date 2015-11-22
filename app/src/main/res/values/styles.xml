@@ -2,7 +2,16 @@
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
+        <!-- Customize your theme here. -->'
+
+    </style>
+
+
+    <style name="Main" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->'
+        <item name="android:background">@drawable/tlo</item>
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
     </style>
 
     <!-- this style removes title bar from activity. Please configure a AndroidManifest file to use it. -->

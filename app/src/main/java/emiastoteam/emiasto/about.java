@@ -1,25 +1,19 @@
 package emiastoteam.emiasto;
 
-import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 
-public class users extends AppCompatActivity {
+public class about extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_users);
+        setContentView(R.layout.activity_about);
     }
 
-    public void showAddUser(View view)
-    {
-        Intent intencja = new Intent(this, addUser.class );
-        startActivity(intencja);
-    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

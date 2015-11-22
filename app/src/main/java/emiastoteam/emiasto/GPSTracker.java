@@ -13,6 +13,18 @@ import android.os.IBinder;
 import android.provider.Settings;
 import android.util.Log;
 
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.protocol.BasicHttpContext;
+import org.apache.http.protocol.HttpContext;
+
+import java.io.IOException;
+import java.io.InputStream;
+
 /**
  * Created by kzie on 2015-11-08.
  */
@@ -34,10 +46,10 @@ public class GPSTracker extends Service implements LocationListener {
     double longitude; // longitude
 
     // The minimum distance to change Updates in meters
-    private static final long MIN_DISTANCE_CHANGE_FOR_UPDATES = 10; // 10 meters
+    private static final long MIN_DISTANCE_CHANGE_FOR_UPDATES = 2; // 2 metry
 
     // The minimum time between updates in milliseconds
-    private static final long MIN_TIME_BW_UPDATES = 1000 * 60 * 1; // 1 minute
+    private static final long MIN_TIME_BW_UPDATES = 1000 * 2 * 1; // 2 sekundy
 
     // Declaring a Location Manager
     protected LocationManager locationManager;
@@ -139,6 +151,44 @@ public class GPSTracker extends Service implements LocationListener {
 
         // return longitude
         return longitude;
+    }
+
+    public double getAltitude(Double longitude, Double latitude) {
+        longitude = 51.421935 ;
+        latitude = 21.960356 ;
+        double result = Double.NaN;
+        HttpClient httpClient = new DefaultHttpClient();
+        HttpContext localContext = new BasicHttpContext();
+        String url = "http://gisdata.usgs.gov/"
+                + "xmlwebservices2/elevation_service.asmx/"
+                + "getElevation?X_Value=" + String.valueOf(longitude)
+                + "&Y_Value=" + String.valueOf(latitude)
+                + "&Elevation_Units=METERS&Source_Layer=-1&Elevation_Only=true";
+        HttpGet httpGet = new HttpGet(url);
+        try {
+
+
+            HttpResponse response = httpClient.execute(httpGet, localContext);
+            HttpEntity entity = response.getEntity();
+            if (entity != null) {
+                InputStream instream = entity.getContent();
+                int r = -1;
+                StringBuffer respStr = new StringBuffer();
+                while ((r = instream.read()) != -1)
+                    respStr.append((char) r);
+                String tagOpen = "<double>";
+                String tagClose = "</double>";
+                if (respStr.indexOf(tagOpen) != -1) {
+                    int start = respStr.indexOf(tagOpen) + tagOpen.length();
+                    int end = respStr.indexOf(tagClose);
+                    String value = respStr.substring(start, end);
+                    result = Double.parseDouble(value);
+                }
+                instream.close();
+            }
+        } catch (ClientProtocolException e) {}
+        catch (IOException e) {}
+        return result;
     }
 
     /**
