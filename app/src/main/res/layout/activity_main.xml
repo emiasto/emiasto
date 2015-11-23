@@ -13,7 +13,7 @@
     >
 
     <Button
-        android:layout_width="fill_parent"
+        android:layout_width="220.0dip"
         android:layout_height="wrap_content"
         android:text="@string/btnTxtStartWikitude"
         android:id="@+id/btnStartW"
@@ -25,7 +25,7 @@
         android:onClick="startW"/>
 
     <Button
-        android:layout_width="fill_parent"
+        android:layout_width="220.0dip"
         android:layout_height="wrap_content"
         android:text="@string/btnTextShowAbout"
         android:id="@+id/btnAbout"
@@ -38,7 +38,7 @@
 
 
     <Button
-        android:layout_width="fill_parent"
+        android:layout_width="220.0dip"
         android:layout_height="wrap_content"
         android:text="@string/btnTxtCloseApp"
         android:id="@+id/button3"
