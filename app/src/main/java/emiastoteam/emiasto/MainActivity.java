@@ -62,7 +62,6 @@ public class MainActivity extends AppCompatActivity {
     public void GetGPS(View view)
     {
         gps = new GPSTracker(MainActivity.this);
-
         // check if GPS enabled
         if(gps.canGetLocation()){
 

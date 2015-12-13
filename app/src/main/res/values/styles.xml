@@ -9,7 +9,7 @@
 
     <style name="Main" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->'
-        <item name="android:background">@drawable/tlo</item>
+       <!-- <item name="android:background">@drawable/tlo</item>-->
         <item name="windowNoTitle">true</item>
         <item name="windowActionBar">false</item>
     </style>
